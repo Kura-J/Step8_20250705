@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <title>商品一覧画面</title>
+    <title>商品登録画面</title>
 </head>
 <body>
     <div class="list">
@@ -29,9 +29,7 @@
                     <th class="list__header-cell">在庫数</th>
                     <th class="list__header-cell">メーカー名</th>
                     <th class="list__header-cell">
-                        <div class="list__product--new">
-                            <a href="{{ route('product_new') }}" class="list__product--new-button">新規登録</a>
-                        </div>
+                        <p class="list__product--new">新規登録</p>
                     </th>
                 </tr>
             </thead>

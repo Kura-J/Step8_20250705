@@ -76,13 +76,11 @@ th, td{
 }
 
 .list__product--new{
-    margin-left: 40px;
-    margin-right: 40px;
+    margin: 0 40px;
     border: 1px solid black;
-}
-
-.list__product--new{
     background-color: orange;
+    width: 70px;
+    height: 60px;
 }
 
 .pagination {

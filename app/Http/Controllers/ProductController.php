@@ -13,4 +13,8 @@ class ProductController extends Controller
 
         return view('item_all', ['products' => $products]);
     }
+
+    public function productNew() {
+        return view('product_new');
+    }
 }
