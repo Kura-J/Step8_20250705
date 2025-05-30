@@ -1,0 +1,120 @@
+.list{
+    width: 700px;
+}
+
+.list__title, .list__form{
+    margin: 0 50px;
+}
+
+.list__title{
+    margin-top: 50px;
+    font-weight: 200;
+}
+
+.list__table{
+    border-collapse: collapse;
+    width: 600px;
+    margin: 0 50px;
+}
+
+table, tr{
+    border: 1px solid black;
+}
+
+tr{
+    height: 60px;
+}
+
+th, td{
+    text-align: center;
+}
+
+.list__input, .list__select, .list__button--search{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    border: 1px solid silver;
+    height: 30px;
+}
+
+.list__button--search{
+    background-color: white;
+}
+
+.list__input, .list__select{
+    width: 150px;
+}
+
+.list__button--search{
+    width: 50px;
+}
+
+.list__transition-cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.list__detail-button, .list__delete-button{
+    text-align: center;
+    border: 1px solid black;
+    width: 70px;
+}
+
+.list__detail-button{
+    background-color: aqua;
+}
+
+.list__delete-button{
+    background-color: red;
+    color: white;
+}
+
+.list__all--odd{
+    background-color: silver;
+}
+
+.list__product--new{
+    margin-left: 40px;
+    margin-right: 40px;
+    border: 1px solid black;
+}
+
+.list__product--new{
+    background-color: orange;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding-left: 0;
+    list-style: none;
+    margin: 50px 0;
+}
+
+.page-item {
+    display: inline-block;
+}
+
+.page-link {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    color: #333;
+    text-decoration: none;
+}
+
+.page-item.active .page-link {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+}
+
+.page-item.disabled .page-link {
+    color: #ccc;
+    pointer-events: none;
+}
+
