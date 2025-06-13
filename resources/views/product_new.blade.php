@@ -8,51 +8,67 @@
     <title>商品登録画面</title>
 </head>
 <body>
-    <div class="list">
-        <h1 class="list__title">商品一覧画面</h1>
+    <div class="product-new">
+        <h1 class="product-new__title">商品新規登録画面</h1>
 
-        <form action="#" method="get" class="list__form">
-            <input type="text" placeholder="検索キーワード" class="list__input">
-            <select name="maker" class="list__select">
-                <option value="">メーカー名</option>
-            </select>
-            <button type="submit" class="list__button--search">検索</button>
+        <form action="{{ route('submit') }}" method="post" class="product-new__form" enctype="multipart/form-data">
+            @csrf
+
+            <div class="product-new__field">
+                <label for="product">商品名</label>
+                <input type="text" class="product-new__name" id="product" name="product_name" value="{{ old('product_name') }}">
+                @if($errors->has('product_name'))
+                    <p>{{ $errors->first('product_name') }}</p>
+                @endif
+            </div>
+
+            <div class="product-new__field">
+                <label for="maker">メーカー名</label>
+                <select name="company_id" class="product-new__maker" id="maker">
+                    <option value=""></option>
+                    @foreach($companies as $company)
+                        <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>
+                            {{ $company->company_name }}
+                        </option>
+                    @endforeach
+                    @if($errors->has('company_id'))
+                        <p>{{ $errors->first('company_id') }}</p>
+                    @endif
+                </select>
+            </div>
+
+            <div class="product-new__field">
+                <label for="price">価格</label>
+                <input type="text" class="product-new__price" id="price" name="price" value="{{ old('price') }}">
+                @if($errors->has('price'))
+                    <p>{{ $errors->first('price') }}</p>
+                @endif
+            </div>
+
+            <div class="product-new__field">
+                <label for="stock">在庫数</label>
+                <input type="text" class="product-new__stock" id="stock" name="stock" value="{{ old('stock') }}">
+                @if($errors->has('stock'))
+                    <p>{{ $errors->first('stock') }}</p>
+                @endif
+            </div>
+
+            <div class="product-new__field">
+                <label for="comment">コメント</label>
+                <textarea class="product-new__comment" id="comment" name="comment">{{ old('comment') }}</textarea>
+            </div>
+
+            <div class="product-new__field">
+                <label for="img_path">商品画像</label>
+                <input type="file" class="product-new__img-path" id="img_path" name="img_path">
+            </div>
+
+            <div class="product-new__buttons">
+                <button type="submit" class="product-new__new">新規登録</button>
+                <a href="#" class="product-new__back">戻る</a>
+            </div>
+
         </form>
-
-        <table class="list__table">
-            <thead class="list__thead">
-                <tr class="list__header">
-                    <th class="list__header-cell">ID</th>
-                    <th class="list__header-cell">商品画像</th>
-                    <th class="list__header-cell">商品名</th>
-                    <th class="list__header-cell">価格</th>
-                    <th class="list__header-cell">在庫数</th>
-                    <th class="list__header-cell">メーカー名</th>
-                    <th class="list__header-cell">
-                        <p class="list__product--new">新規登録</p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="list__tbody">
-            @foreach ($products as $product)
-                <tr class="list__all{{ $loop->odd ? ' list__all--odd' : '' }}">
-                    <td class="list__all-cell">{{ $product->id }}</td>
-                    <td class="list__all-cell">{{ $product->img_path }}</td>
-                    <td class="list__all-cell">{{ $product->product_name }}</td>
-                    <td class="list__all-cell">{{ $product->price }}</td>
-                    <td class="list__all-cell">{{ $product->stock }}</td>
-                    <td class="list__all-cell">{{ $product->company_name }}</td>
-                    <td class="list__all-cell list__transition-cell">
-                        <p class="list__detail-button">詳細</p>
-                        <p class="list__delete-button">削除</p>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        <div class="list__pagination">
-            {{ $products->links('pagination::bootstrap-4') }}
-        </div>
     </div>
 </body>
 </html>

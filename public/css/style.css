@@ -1,32 +1,11 @@
-.list{
-    width: 700px;
-}
 
-.list__title, .list__form{
+.list, .product-new{
     margin: 0 50px;
 }
 
-.list__title{
+.list__title, .product-new__title{
     margin-top: 50px;
-    font-weight: 200;
-}
-
-.list__table{
-    border-collapse: collapse;
-    width: 600px;
-    margin: 0 50px;
-}
-
-table, tr{
-    border: 1px solid black;
-}
-
-tr{
-    height: 60px;
-}
-
-th, td{
-    text-align: center;
+    font-size: 30px;
 }
 
 .list__input, .list__select, .list__button--search{
@@ -49,10 +28,38 @@ th, td{
     width: 50px;
 }
 
+.list__table{
+    border-collapse: collapse;
+    width: 600px;
+}
+
+.list__table, .list__header, .list__all{
+    border: 1px solid black;
+}
+
+tr{
+    height: 60px;
+}
+
+th, td{
+    text-align: center;
+}
+
+.list__product--new{
+    justify-content: center;
+}
+
+.list__product--new-button{
+    display: inline-block;
+    border: 1px solid black;
+    background-color: orange;
+    width: 90px;
+    text-decoration: none;
+}
+
 .list__transition-cell{
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 10px;
 }
 
@@ -75,20 +82,11 @@ th, td{
     background-color: silver;
 }
 
-.list__product--new{
-    margin: 0 40px;
-    border: 1px solid black;
-    background-color: orange;
-    width: 70px;
-    height: 60px;
-}
-
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     gap: 6px;
     padding-left: 0;
-    list-style: none;
     margin: 50px 0;
 }
 
@@ -114,5 +112,104 @@ th, td{
 .page-item.disabled .page-link {
     color: #ccc;
     pointer-events: none;
+}
+
+/* 全体コンテナ */
+.product-new__form {
+    width: 500px;
+    margin: 40px 0;
+    padding: 20px 30px;
+    border: 1px solid #000;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.product-new__title {
+    font-size: 30px;
+    margin-bottom: 24px;
+}
+
+/* 各入力フィールドの並びとスタイル */
+.product-new__field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.product-new__field label {
+    width: 100px;
+    font-weight: bold;
+}
+
+/* 必須項目のアスタリスク */
+.product-new__field label::after {
+    content: "*";
+    color: red;
+    margin-left: 4px;
+}
+
+/* 入力欄の共通スタイル */
+.product-new__field input[type="text"],
+.product-new__field input[type="number"],
+.product-new__field textarea {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.product-new__field input[type="file"]{
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.product-new__field textarea {
+    height: 60px;
+    resize: vertical;
+}
+
+/* ボタン配置 */
+.product-new__buttons {
+    display: flex;
+    gap: 80px;
+    margin-top: 80px;
+}
+
+/* 新規登録ボタン */
+.product-new__new {
+    background-color: darkorange;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 戻るリンクボタン風 */
+.product-new__back {
+    background-color: deepskyblue;
+    padding: 10px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* ホバー時の演出 */
+.product-new__new:hover,
+.product-new__back:hover {
+    opacity: 0.8;
+}
+
+.product-new__maker{
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
