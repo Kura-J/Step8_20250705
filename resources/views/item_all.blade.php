@@ -45,7 +45,7 @@
                     <td class="list__all-cell">{{ $product->stock }}</td>
                     <td class="list__all-cell">{{ $product->company_name }}</td>
                     <td class="list__all-cell list__transition-cell">
-                        <p class="list__detail-button">詳細</p>
+                        <a href="{{ route('product_detail', ['id' => $product->id]) }}" class="list__detail-button">詳細</a>
                         <p class="list__delete-button">削除</p>
                     </td>
                 </tr>

@@ -22,7 +22,6 @@ class ProductController extends Controller
     }
 
     public function registSubmit(ProductRequest $request) {
-        \Log::info('フォーム送信内容', $request->all());
         if($request->hasFile('img_path')){
             $image = $request->file('img_path');
             $file_name = $image->getClientOriginalName();
@@ -44,5 +43,15 @@ class ProductController extends Controller
         }
 
         return redirect(route('product_new'));
+    }
+
+    public function productDetail($id) {
+        $product = DB::table('products')
+            ->join('companies', 'products.company_id', '=', 'companies.id')
+            ->select('products.*', 'companies.company_name as company_name')
+            ->where('products.id', $id)
+            ->first();
+
+        return view('product_detail', ['product' => $product]);
     }
 }

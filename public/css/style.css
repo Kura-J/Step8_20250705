@@ -1,9 +1,10 @@
-
+/*画面全体*/
 .list, .product-new{
     margin: 0 50px;
 }
 
-.list__title, .product-new__title{
+/*タイトル*/
+.list__title, .product-new__title, .product-detail__title{
     margin-top: 50px;
     font-size: 30px;
 }
@@ -33,7 +34,8 @@
     width: 600px;
 }
 
-.list__table, .list__header, .list__all{
+/*内容の枠線*/
+.list__table, .list__header, .list__all, .product-detail{
     border: 1px solid black;
 }
 
@@ -41,7 +43,7 @@ tr{
     height: 60px;
 }
 
-th, td{
+.list__header-cell, .list__all-cell{
     text-align: center;
 }
 
@@ -67,10 +69,16 @@ th, td{
     text-align: center;
     border: 1px solid black;
     width: 70px;
+    text-decoration: none;
 }
 
 .list__detail-button{
+    display: inline-block;
     background-color: aqua;
+    color: black;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 16px;
 }
 
 .list__delete-button{
@@ -82,6 +90,8 @@ th, td{
     background-color: silver;
 }
 
+
+/*ページネーション*/
 .pagination {
     display: flex;
     justify-content: left;
@@ -115,7 +125,7 @@ th, td{
 }
 
 /* 全体コンテナ */
-.product-new__form {
+.product-new__form{
     width: 500px;
     margin: 40px 0;
     padding: 20px 30px;
@@ -128,6 +138,7 @@ th, td{
     font-size: 30px;
     margin-bottom: 24px;
 }
+
 
 /* 各入力フィールドの並びとスタイル */
 .product-new__field {
@@ -213,3 +224,70 @@ th, td{
     box-sizing: border-box;
 }
 
+.product-detail__title{
+    margin-left: 50px;
+}
+
+.product-detail{
+    width: 500px;
+    margin: 40px 50px;
+    padding: 20px 30px;
+    border: 1px solid #000;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.product-detail__th{
+    text-align: left;
+    width: 120px;
+}
+
+.product-detail__td{
+    width: 250px;
+}
+
+/* ボタン配置 */
+.product-detail__buttons {
+    display: flex;
+    gap: 40px;
+    margin-top: 10px;
+}
+
+/* 新規登録ボタン */
+.product-detail__edit {
+    background-color: darkorange;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 戻るリンクボタン風 */
+.product-detail__back {
+    background-color: deepskyblue;
+    padding: 10px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.product-detail__comment{
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.product-detail__comment-label{
+    font-weight: bold;
+    width: 120px;
+}
+
+.product-detail__comment-box{
+    border: 1px solid black;
+    padding: 8px;
+    height: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 25px;
+}
