@@ -46,8 +46,8 @@
             </tr>
         </table>
         <div class="product-detail__buttons">
-            <p class="product-detail__edit">編集</p>
-            <p class="product-detail__back">戻る</p>
+            <a href="{{ route('product_edit', ['id' => $product->id]) }}" class="product-detail__edit">編集</a>
+            <a href="{{ route('home', ['id' => $product->id]) }}" class="product-detail__back">戻る</a>
         </div>
     </div>
 </body>

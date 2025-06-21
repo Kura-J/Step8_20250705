@@ -1,5 +1,5 @@
 /*画面全体*/
-.list, .product-new{
+.list, .product-new, .product-edit{
     margin: 0 50px;
 }
 
@@ -125,7 +125,7 @@ tr{
 }
 
 /* 全体コンテナ */
-.product-new__form{
+.product-new__form, .product-edit__form{
     width: 500px;
     margin: 40px 0;
     padding: 20px 30px;
@@ -134,20 +134,25 @@ tr{
     box-sizing: border-box;
 }
 
-.product-new__title {
+.product-new__title, .product-edit__title{
     font-size: 30px;
     margin-bottom: 24px;
 }
 
 
 /* 各入力フィールドの並びとスタイル */
-.product-new__field {
+.product-new__field, .product-edit__field{
     display: flex;
     align-items: center;
     margin-bottom: 16px;
 }
 
 .product-new__field label {
+    width: 100px;
+    font-weight: bold;
+}
+
+.product-edit__field label {
     width: 100px;
     font-weight: bold;
 }
@@ -159,10 +164,25 @@ tr{
     margin-left: 4px;
 }
 
+.product-edit__field label::after {
+    content: "*";
+    color: red;
+    margin-left: 4px;
+}
+
 /* 入力欄の共通スタイル */
 .product-new__field input[type="text"],
-.product-new__field input[type="number"],
 .product-new__field textarea {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.product-edit__field input[type="text"],
+.product-edit__field textarea {
     flex: 1;
     padding: 6px 10px;
     font-size: 14px;
@@ -178,20 +198,32 @@ tr{
     border-radius: 4px;
 }
 
+.product-edit__field input[type="file"]{
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
 .product-new__field textarea {
     height: 60px;
     resize: vertical;
 }
 
+.product-edit__field textarea {
+    height: 60px;
+    resize: vertical;
+}
+
 /* ボタン配置 */
-.product-new__buttons {
+.product-new__buttons, .product-edit__buttons{
     display: flex;
     gap: 80px;
     margin-top: 80px;
 }
 
 /* 新規登録ボタン */
-.product-new__new {
+.product-new__new, .product-edit__edit{
     background-color: darkorange;
     padding: 10px 16px;
     border: none;
@@ -200,7 +232,7 @@ tr{
 }
 
 /* 戻るリンクボタン風 */
-.product-new__back {
+.product-new__back, .product-edit__back{
     background-color: deepskyblue;
     padding: 10px 16px;
     border-radius: 4px;
@@ -211,11 +243,13 @@ tr{
 
 /* ホバー時の演出 */
 .product-new__new:hover,
-.product-new__back:hover {
+.product-new__back:hover,
+.product-edit__edit:hover,
+.product-edit__back:hover{
     opacity: 0.8;
 }
 
-.product-new__maker{
+.product-new__maker, .product-edit__maker{
     flex: 1;
     padding: 6px 10px;
     font-size: 14px;
@@ -255,11 +289,17 @@ tr{
 
 /* 新規登録ボタン */
 .product-detail__edit {
+    display: inline-block;
     background-color: darkorange;
     padding: 10px 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 16px;
+    text-decoration: none;
+    color: black;
 }
 
 /* 戻るリンクボタン風 */
@@ -270,6 +310,10 @@ tr{
     text-decoration: none;
     display: inline-block;
     text-align: center;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 16px;
+    color: black;
 }
 
 .product-detail__comment{

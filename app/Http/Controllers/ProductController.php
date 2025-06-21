@@ -54,4 +54,42 @@ class ProductController extends Controller
 
         return view('product_detail', ['product' => $product]);
     }
+
+    public function productEdit($id) {
+        $product = DB::table('products')
+            ->where('id', $id)
+            ->first();
+        
+        $companies = DB::table('companies')->get();
+
+        return view('product_edit', [
+            'product' => $product,
+            'companies' => $companies
+        ]);
+    }
+
+    public function productUpdate(ProductRequest $request, $id) {
+        if($request->hasFile('img_path')) {
+            $image = $request->file('img_path');
+            $file_name = $image->getClientOriginalName();
+            $image->storeAs('public/images', $file_name);
+            $image_path = 'storage/images/' . $file_name;
+        } else {
+            $image_path = $request->existing_img_path;
+        }
+
+        DB::table('products')
+            ->where('id', $id)
+            ->update([
+                'product_name' => $request->product_name,
+                'company_id' => $request->company_id,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'comment' => $request->comment,
+                'img_path' => $image_path,
+                'updated_at' => now(),
+            ]);
+        
+        return redirect()->route('product_detail', ['id' => $id]);
+    }
 }
