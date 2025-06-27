@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <title>商品登録画面</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('hide_header')
+@endsection
+
+@section('title', '商品登録画面')
+@section('content')
     <div class="product-new">
         <h1 class="product-new__title">商品新規登録画面</h1>
 
@@ -64,11 +61,10 @@
             </div>
 
             <div class="product-new__buttons">
-                <button type="submit" class="product-new__new">新規登録</button>
-                <a href="#" class="product-new__back">戻る</a>
+                <button type="submit" class="product-new__new-button">新規登録</button>
+                <a href="{{ route('home') }}" class="product-new__back-button">戻る</a>
             </div>
 
         </form>
     </div>
-</body>
-</html>
+@endsection

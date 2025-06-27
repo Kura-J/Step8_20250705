@@ -9,11 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function showList() {
+    public function showList(Request $request) {
         $model = new Product();
-        $products = $model->getList();
+        $keyword = $request->input('keyword');
+        $makerId = $request->input('maker');
 
-        return view('item_all', ['products' => $products]);
+        $products = $model->getFilteredProducts($keyword, $makerId)->appends($request->all());
+        $companies = $model->getAllCompanies();
+
+        return view('product_list', [
+            'products' => $products,
+            'companies' => $companies,
+        ]);
     }
 
     public function productNew() {
@@ -22,7 +29,7 @@ class ProductController extends Controller
     }
 
     public function registSubmit(ProductRequest $request) {
-        if($request->hasFile('img_path')){
+        if ($request->hasFile('img_path')) {
             $image = $request->file('img_path');
             $file_name = $image->getClientOriginalName();
             $image->storeAs('public/images', $file_name);
@@ -46,21 +53,16 @@ class ProductController extends Controller
     }
 
     public function productDetail($id) {
-        $product = DB::table('products')
-            ->join('companies', 'products.company_id', '=', 'companies.id')
-            ->select('products.*', 'companies.company_name as company_name')
-            ->where('products.id', $id)
-            ->first();
+        $model = new Product();
+        $product = $model->getProductDetail($id);
 
         return view('product_detail', ['product' => $product]);
     }
 
     public function productEdit($id) {
-        $product = DB::table('products')
-            ->where('id', $id)
-            ->first();
-        
-        $companies = DB::table('companies')->get();
+        $model = new Product();
+        $product = $model->getProductById($id);
+        $companies = $model->getAllCompanies();
 
         return view('product_edit', [
             'product' => $product,
@@ -69,7 +71,7 @@ class ProductController extends Controller
     }
 
     public function productUpdate(ProductRequest $request, $id) {
-        if($request->hasFile('img_path')) {
+        if ($request->hasFile('img_path')) {
             $image = $request->file('img_path');
             $file_name = $image->getClientOriginalName();
             $image->storeAs('public/images', $file_name);
@@ -78,18 +80,15 @@ class ProductController extends Controller
             $image_path = $request->existing_img_path;
         }
 
-        DB::table('products')
-            ->where('id', $id)
-            ->update([
-                'product_name' => $request->product_name,
-                'company_id' => $request->company_id,
-                'price' => $request->price,
-                'stock' => $request->stock,
-                'comment' => $request->comment,
-                'img_path' => $image_path,
-                'updated_at' => now(),
-            ]);
-        
-        return redirect()->route('product_detail', ['id' => $id]);
+        $model = new Product();
+        $model->updateProduct($id, $request, $image_path);
+
+        return redirect()->route('product_edit', ['id' => $id]);
+    }
+
+    public function productDelete($id) {
+        $model = new Product();
+        $model->deleteProduct($id);
+        return redirect()->route('home');
     }
 }

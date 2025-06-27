@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <title>商品情報編集画面</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('hide_header')
+@endsection
+
+@section('title', '商品情報編集画面')
+@section('content')
     <div class="product-edit">
         <h1 class="product-edit__title">商品情報編集画面</h1>
 
@@ -70,11 +67,10 @@
             <input type="hidden" name="existing_img_path" value="{{ $product->img_path }}">
 
             <div class="product-edit__buttons">
-                <button type="submit" class="product-edit__edit">更新</button>
-                <a href="{{ route('product_detail', ['id' => $product->id]) }}" class="product-edit__back">戻る</a>
+                <button type="submit" class="product-edit__edit-button">更新</button>
+                <a href="{{ route('product_detail', ['id' => $product->id]) }}" class="product-edit__back-button">戻る</a>
             </div>
 
         </form>
     </div>
-</body>
-</html>
+@endsection

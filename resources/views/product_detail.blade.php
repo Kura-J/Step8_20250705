@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <title>商品詳細画面</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('hide_header')
+@endsection
+
+@section('title', '商品詳細画面')
+@section('content')
     <h1 class="product-detail__title">商品情報詳細画面</h1>
     <div class="product-detail">
         
@@ -46,9 +43,8 @@
             </tr>
         </table>
         <div class="product-detail__buttons">
-            <a href="{{ route('product_edit', ['id' => $product->id]) }}" class="product-detail__edit">編集</a>
-            <a href="{{ route('home', ['id' => $product->id]) }}" class="product-detail__back">戻る</a>
+            <a href="{{ route('product_edit', ['id' => $product->id]) }}" class="product-detail__edit-button">編集</a>
+            <a href="{{ route('home') }}" class="product-detail__back-button">戻る</a>
         </div>
     </div>
-</body>
-</html>
+@endsection
