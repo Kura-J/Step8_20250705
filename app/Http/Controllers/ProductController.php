@@ -24,7 +24,8 @@ class ProductController extends Controller
     }
 
     public function productNew() {
-        $companies = DB::table('companies')->get();
+        $model = new Product();
+        $companies = $model->getAllCompanies();
         return view('product_new', ['companies' => $companies]);
     }
 

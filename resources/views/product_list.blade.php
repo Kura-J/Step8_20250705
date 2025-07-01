@@ -19,7 +19,7 @@
             <select name="maker" class="product-list__maker-select">
                 <option value="">メーカー名</option>
                 @foreach($companies as $company)
-                    <option value="{{ $company->id }}" {{request('maker') == $company->id ? 'select' : '' }}>
+                    <option value="{{ $company->id }}" {{request('maker') == $company->id ? 'selected' : '' }}>
                         {{ $company->company_name }}
                     </option>
                 @endforeach
@@ -47,7 +47,13 @@
             @foreach ($products as $product)
                 <tr class="product-list__product-all{{ $loop->odd ? ' product-list__product-all--odd' : '' }}">
                     <td class="product-list__product-all--cell">{{ $product->id }}</td>
-                    <td class="product-list__product-all--cell">商品画像</td>
+                    <td class="product-list__product-all--cell">
+                        @if (! empty($product->img_path))
+                            <img src="{{ asset($product->img_path) }}" alt="商品画像" class="product-list__image">
+                        @else
+                            
+                        @endif
+                    </td>
                     <td class="product-list__product-all--cell">{{ $product->product_name }}</td>
                     <td class="product-list__product-all--cell">{{ $product->price }}</td>
                     <td class="product-list__product-all--cell">{{ $product->stock }}</td>
