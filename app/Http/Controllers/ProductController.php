@@ -72,24 +72,44 @@ class ProductController extends Controller
     }
 
     public function productUpdate(ProductRequest $request, $id) {
-        if ($request->hasFile('img_path')) {
-            $image = $request->file('img_path');
-            $file_name = $image->getClientOriginalName();
-            $image->storeAs('public/images', $file_name);
-            $image_path = 'storage/images/' . $file_name;
-        } else {
-            $image_path = $request->existing_img_path;
+
+        DB::beginTransaction();
+
+        try {
+            if ($request->hasFile('img_path')) {
+                $image = $request->file('img_path');
+                $file_name = $image->getClientOriginalName();
+                $image->storeAs('public/images', $file_name);
+                $image_path = 'storage/images/' . $file_name;
+            } else {
+                $image_path = $request->existing_img_path;
+            }
+
+            $model = new Product();
+            $model->updateProduct($id, $request, $image_path);
+
+            DB::commit();
+            return redirect()->route('product_edit', ['id' => $id]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return back();
         }
-
-        $model = new Product();
-        $model->updateProduct($id, $request, $image_path);
-
-        return redirect()->route('product_edit', ['id' => $id]);
     }
 
     public function productDelete($id) {
-        $model = new Product();
-        $model->deleteProduct($id);
-        return redirect()->route('home');
+        DB::beginTransaction();
+
+        try {
+            $model = new Product();
+            $model->deleteProduct($id);
+
+            DB::commit();
+            return redirect()->route('home');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return back();
+        }
     }
 }
