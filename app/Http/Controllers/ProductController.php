@@ -23,6 +23,16 @@ class ProductController extends Controller
         ]);
     }
 
+    public function ajaxSearch(Request $request) {
+        $model = new Product();
+        $keyword = $request->input('keyword');
+        $makerId = $request->input('maker');
+
+        $products = $model->getFilteredProducts($keyword, $makerId);
+
+        return view('partials.product_table', ['products' => $products]);
+    }
+
     public function productNew() {
         $model = new Product();
         $companies = $model->getAllCompanies();

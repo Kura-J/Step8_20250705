@@ -14,9 +14,9 @@
 
         <h1 class="product-list__title">商品一覧画面</h1>
 
-        <form action="{{ route('home') }}" method="get" class="product-list__form">
-            <input type="text" placeholder="検索キーワード" class="product-list__input" name="keyword" value="{{ request('keyword') }}">
-            <select name="maker" class="product-list__maker-select">
+        <form action="{{ route('home') }}" method="get" class="product-list__form" id="searchForm">
+            <input type="text" placeholder="検索キーワード" class="product-list__input" id="searchKeyword" name="keyword" value="{{ request('keyword') }}">
+            <select name="maker" class="product-list__maker-select" id="searchMaker">
                 <option value="">メーカー名</option>
                 @foreach($companies as $company)
                     <option value="{{ $company->id }}" {{request('maker') == $company->id ? 'selected' : '' }}>
@@ -24,7 +24,7 @@
                     </option>
                 @endforeach
             </select>
-            <button type="submit" class="product-list__search-button">検索</button>
+            <button type="submit" class="product-list__search-button" id="searchButton" data-url="{{ route('ajax.home' )}}">検索</button>
         </form>
 
         <table class="product-list__table">
@@ -43,35 +43,16 @@
                     </th>
                 </tr>
             </thead>
-            <tbody class="product-list__tbody">
-            @foreach ($products as $product)
-                <tr class="product-list__product-all{{ $loop->odd ? ' product-list__product-all--odd' : '' }}">
-                    <td class="product-list__product-all--cell">{{ $product->id }}</td>
-                    <td class="product-list__product-all--cell">
-                        @if (! empty($product->img_path))
-                            <img src="{{ asset($product->img_path) }}" alt="商品画像" class="product-list__image">
-                        @else
-                            
-                        @endif
-                    </td>
-                    <td class="product-list__product-all--cell">{{ $product->product_name }}</td>
-                    <td class="product-list__product-all--cell">{{ $product->price }}</td>
-                    <td class="product-list__product-all--cell">{{ $product->stock }}</td>
-                    <td class="product-list__product-all--cell">{{ $product->company_name }}</td>
-                    <td class="product-list__product-all--cell product-list__transition-buttons">
-                        <a href="{{ route('product_detail', ['id' => $product->id]) }}" class="product-list__detail-button">詳細</a>
-                        <form action="{{ route('product_delete', ['id' => $product->id]) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="product-list__delete-button" onclick="return confirm('本当に削除しますか？')">削除</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
+            <tbody class="product-list__tbody" id="productTable">
+                @include('partials.product_table', ['products' => $products])
             </tbody>
         </table>
         <div class="product-list__pagination">
             {{ $products->links('pagination::bootstrap-4') }}
         </div>
     </div>
+@section('scripts')
+    <script src="{{ asset('js/product.js') }}"></script>
+@endsection
+
 @endsection
