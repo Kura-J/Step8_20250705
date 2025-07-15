@@ -23,6 +23,22 @@ class Product extends Model
             $query->where('products.company_id', $makerId);
         }
 
+        if (! empty(request('price-min'))) {
+            $query->where('products.price', '>=', request('price-min'));
+        }
+
+        if (!empty(request('price-max'))) {
+            $query->where('products.price', '<=', request('price-max'));
+        }
+
+        if (!empty(request('stock-min'))) {
+            $query->where('products.stock', '>=', request('stock-min'));
+        }
+
+        if (!empty(request('stock-max'))) {
+            $query->where('products.stock', '<=', request('stock-max'));
+        }
+
         return $query->paginate(5);
     }
 

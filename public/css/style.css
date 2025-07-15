@@ -40,7 +40,8 @@
 .product-list__table
 {
     border-collapse: collapse;
-    width: 600px;
+    width: 650px;
+    font-size: 14px;
 }
 
 /*内容の枠線、セル*/
@@ -57,6 +58,11 @@ tr
 .product-list__header--cell, .product-list__product-all--cell
 {
     text-align: center;
+}
+
+.product-list__table td, .product-list__table th
+{
+    vertical-align: middle;
 }
 
 /*商品一覧画面の新規登録ボタン*/
@@ -117,6 +123,26 @@ tr
     background-color: silver;
 }
 
+.tablesorter-default td
+{
+    border-bottom: white;
+}
+
+#productListTable td
+{
+    height: 68px;
+    overflow: hidden;
+}
+
+.tablesorter-default .odd td
+{
+    background-color: silver !important;
+}
+
+.tablesorter-default .even td
+{
+    background-color: white !important;
+}
 
 /*ページネーション*/
 .pagination
@@ -402,4 +428,30 @@ tr
     width: 80px;
     height: 60px;
     object-fit: contain;
+}
+
+/*商品一覧画面の価格、在庫数の上限下限検索*/
+.product-list__price-range, .product-list__stock-range
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 8px;
+}
+
+.product-list__price-range--label, .product-list__stock-range--label
+{
+    width: 60px;
+    font-weight: bold;
+}
+
+.product-list__price-range--input, .product-list__stock-range--input
+{
+    width: 80px;
+    padding: 4px;
+}
+
+.product-list__range-space
+{
+    margin: 0 4px;
 }

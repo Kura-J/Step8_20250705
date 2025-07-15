@@ -24,10 +24,25 @@
                     </option>
                 @endforeach
             </select>
+
+            <div class="product-list__price-range">
+                <label class="product-list__price-range--label">価格</label>
+                <input type="text" placeholder="下限" class="product-list__price-range--input" name="price-min" value="{{ request('price-min') }}">
+                <span class="product-list__range-space">〜</span>
+                <input type="text" placeholder="上限" class="product-list__price-range--input" name="price-max" value="{{ request('price-max') }}">
+            </div>
+
+            <div class="product-list__stock-range">
+                <label class="product-list__stock-range--label">在庫数</label>
+                <input type="text" placeholder="下限" class="product-list__stock-range--input" name="stock-min" value="{{ request('stock-min') }}">
+                <span class="product-list__range-space">〜</span>
+                <input type="text" placeholder="上限" class="product-list__stock-range--input" name="stock-max" value="{{ request('stock-max') }}">
+            </div>
+            
             <button type="submit" class="product-list__search-button" id="searchButton" data-url="{{ route('ajax.home' )}}">検索</button>
         </form>
 
-        <table class="product-list__table">
+        <table class="product-list__table tablesorter" id="productListTable">
             <thead class="product-list__thead">
                 <tr class="product-list__header">
                     <th class="product-list__header--cell">ID</th>

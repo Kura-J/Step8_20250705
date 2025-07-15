@@ -1,4 +1,13 @@
 $(function () {
+    $('#productListTable').tablesorter({
+        theme: 'default',
+        headers: {
+            1: { sorter: false },
+            6: { sorter: false },
+        },
+        widgets: ['zebra']
+    });
+
     $('#searchForm').on('submit', function (e) {
         e.preventDefault();
 
@@ -11,6 +20,15 @@ $(function () {
             dataType: 'html',
             success: function (response) {
                 $('#productTable').html(response);
+
+                $('#productListTable').tablesorter({
+                    theme: 'default',
+                    headers: {
+                        1: { sorter: false },
+                        6: { sorter: false },
+                    },
+                    widgets: ['zebra']
+                });
             },
         });
     });

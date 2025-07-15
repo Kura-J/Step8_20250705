@@ -1,5 +1,5 @@
 @foreach ($products as $product)
-    <tr class="product-list__product-all{{ $loop->odd ? ' product-list__product-all--odd' : '' }}">
+    <tr class="product-list__product-all">
         <td class="product-list__product-all--cell">{{ $product->id }}</td>
         <td class="product-list__product-all--cell">
             @if (! empty($product->img_path))
