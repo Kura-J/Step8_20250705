@@ -14,10 +14,10 @@
         <td class="product-list__product-all--cell">{{ $product->company_name }}</td>
         <td class="product-list__product-all--cell product-list__transition-buttons">
             <a href="{{ route('product_detail', ['id' => $product->id]) }}" class="product-list__detail-button">詳細</a>
-            <form action="{{ route('product_delete', ['id' => $product->id]) }}" method="post">
+            <form class="product-list__delete-form" data-id="{{ $product->id }}" data-url="{{ route('product_delete', ['id' => $product->id]) }}">
                 @csrf
                 @method('delete')
-                <button type="submit" class="product-list__delete-button" onclick="return confirm('本当に削除しますか？')">削除</button>
+                <button type="button" class="product-list__delete-button">削除</button>
             </form>
         </td>
     </tr>
