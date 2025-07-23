@@ -82,6 +82,7 @@ class ProductController extends Controller
     }
 
     public function productUpdate(ProductRequest $request, $id) {
+        \Log::debug('リクエスト内容');
 
         DB::beginTransaction();
 
@@ -108,6 +109,7 @@ class ProductController extends Controller
     }
 
     public function productDelete($id) {
+        \Log::info('削除リクエスト受信:' . $id);
         DB::beginTransaction();
 
         try {
