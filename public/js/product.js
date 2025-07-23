@@ -37,7 +37,6 @@ $(function () {
 
     $('#productTable').on('click', '.product-list__delete-button', function (e) {
         e.preventDefault();
-        console.log('読み込まれた。');
 
         if(!confirm('本当に削除しますか')) return;
 
