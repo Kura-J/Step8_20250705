@@ -91,4 +91,11 @@ class Product extends Model
     {
         DB::table('products')->where('id', $id)->delete();
     }
+
+    public function reduceStock($productId, $newStock)
+    {
+        DB::table('products')
+            ->where('id', $productId)
+            ->update(['stock' => $newStock]);
+    }
 }

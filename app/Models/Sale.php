@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class Sale extends Model
 {
@@ -17,10 +18,8 @@ class Sale extends Model
 
         $newStock = $product->stock - 1;
 
-        DB::table('products')
-            ->where('id', $productId)
-            ->update([
-                'stock' => $newStock]);
+        $productModel = new Product();
+        $productModel->reduceStock($productId, $newStock);
 
         DB::table('sales')->insert([
             'product_id' => $productId,
