@@ -30,6 +30,7 @@ $(function () {
                     },
                     widgets: ['zebra']
                 });
+                $('#productListTable').trigger('update');
             },
         });
     });

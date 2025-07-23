@@ -82,6 +82,7 @@ class ProductController extends Controller
     }
 
     public function productUpdate(ProductRequest $request, $id) {
+        \Log::debug('リクエスト内容');
 
         DB::beginTransaction();
 
