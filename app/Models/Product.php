@@ -98,4 +98,12 @@ class Product extends Model
             ->where('id', $productId)
             ->update(['stock' => $newStock]);
     }
+
+    public function getProduct($productId)
+    {
+        return DB::table('products')
+            ->where('id', $productId)
+            ->lockForUpdate()
+            ->first();
+    }
 }
